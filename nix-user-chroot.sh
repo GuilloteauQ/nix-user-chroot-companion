@@ -32,7 +32,7 @@ if [ ! -d $nix_store_dir ]; then
     
 fi
 
-clear
+# clear
 echo "Activate Nix"
-nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh"
+nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci '$1'"
 eval $nix_user_chroot_bash
