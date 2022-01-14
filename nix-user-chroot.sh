@@ -35,5 +35,12 @@ fi
 # clear
 echo "Activate Nix"
 # nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci 'cd $1; nix-shell -p poetry --run \"poetry install && poetry run nxc build -f $2 -l -o $3\"'"
-nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci '$1'"
-eval $nix_user_chroot_bash
+if [ $# -eq 0 ]
+then
+	nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh"
+	eval $nix_user_chroot_bash
+else
+	nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci '$1'"
+	eval $nix_user_chroot_bash
+fi
+
