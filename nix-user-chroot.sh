@@ -39,6 +39,6 @@ if [ "$1" == "store" ]; then
     nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci 'nix-store -qR $2 > $3'"
     eval $nix_user_chroot_bash
 else
-    nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci 'cd $1; nix shell --command nxc build -f $2 -o $3'"
+    nix_user_chroot_bash="$nix_user_chroot_cmd $nix_store_dir bash --rcfile $nix_user_chroot_dir/nix_setenv.sh -ci 'cd $1; nix develop --command nxc build -f $2 -o $3'"
     eval $nix_user_chroot_bash
 fi
